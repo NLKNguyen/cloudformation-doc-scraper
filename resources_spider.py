@@ -1,11 +1,9 @@
 import scrapy
 from scrapy.http import Request
 
-class CloudformationSpider(scrapy.Spider):
-    name = "cloudformation_extractor"
-    start_urls = [
-        'http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html',
-    ]
+class ResourcesSpider(scrapy.Spider):
+    name = "Resources Spider"
+    start_urls = ['http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html']
 
     def parse(self, response):
         aws_resource_ahrefs = response.xpath('//div[@id="main-col-body"]//div[@class="highlights"]/ul/li/a')
@@ -17,10 +15,10 @@ class CloudformationSpider(scrapy.Spider):
             yield request
 
     def parse_single_resource_ref(self, response):
-        result = {}
-        # result['url'] = response.url
-        result['resource'] = response.xpath('//h1[@class="topictitle"]/text()').extract_first()
-        result['properties'] = response.xpath('//div[@class="variablelist"]//dt//code/text()').extract()
-        yield result
+        obj = {}
+        # obj['url'] = response.url
+        obj['resource'] = response.xpath('//h1[@class="topictitle"]/text()').extract_first()
+        obj['properties'] = response.xpath('//div[@class="variablelist"]//dt//code/text()').extract()
+        yield obj
 
 

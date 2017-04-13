@@ -1,0 +1,13 @@
+[
+{"property": "AllowedPattern"},
+{"property": "AllowedValues"},
+{"property": "ConstraintDescription"},
+{"property": "Default"},
+{"property": "Description"},
+{"property": "MaxLength"},
+{"property": "MaxValue"},
+{"property": "MinLength"},
+{"property": "MinValue"},
+{"property": "NoEcho"},
+{"property": "Type"}
+]
